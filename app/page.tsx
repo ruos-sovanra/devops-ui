@@ -1,14 +1,17 @@
-import Link from "next/link";
+import HeroSection from "@/component/HeroSection";
+import FeatureSection from "@/component/FeatureComponent";
+import ServiceComponent from "@/component/ServiceComponent";
+import FrameWorkSection from "@/component/FrameWorkSection";
+import DevOpsFeatureSection from "@/component/FeatureServiceComponent";
 
-const HomePage = () => {
+export default function Home() {
     return (
         <>
-          <h1>Welcome to Yelp</h1>
-          <Link
-              href="/oauth2/authorization/devops"
-              className="bg-red-800 text-white p-2 my-4 inline-block">Log in</Link>
+            <HeroSection/>
+            <FeatureSection/>
+            <ServiceComponent/>
+            <FrameWorkSection/>
+            <DevOpsFeatureSection/>
         </>
-    );
+    )
 }
-
-export default HomePage;

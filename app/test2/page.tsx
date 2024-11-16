@@ -1,7 +1,7 @@
 'use client'
 
-import { useState } from 'react'
-import { Folder, Box, Activity, Globe, BarChart, Settings, Search, Bell, Plus, RefreshCw, XCircle, CheckCircle, Clock } from 'lucide-react'
+
+import { Folder, Box, Activity, Globe, BarChart, Settings, Search, Bell} from 'lucide-react'
 
 export default function DeploymentPage() {
 

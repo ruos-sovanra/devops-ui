@@ -36,7 +36,7 @@ export default function Component() {
     }
 
     return (
-        <div className="w-full max-w-4xl mx-auto p-8 relative bg-gray-100 rounded-lg shadow-lg">
+        <div className="w-full max-w-4xl place-content-center h-screen mx-auto p-8 relative bg-gray-100 rounded-lg shadow-lg">
             <h2 className="text-2xl font-bold text-center mb-8 text-purple-700">DevOps Workflow</h2>
 
             <svg viewBox="0 0 800 100" className="w-full h-auto" style={{ minHeight: '100px' }}>

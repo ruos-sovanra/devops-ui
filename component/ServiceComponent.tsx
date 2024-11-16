@@ -54,11 +54,11 @@ const fadeInUp = {
     transition: { duration: 0.5 }
 }
 
-export default function Component() {
+export default function ServiceComponent() {
     return (
-        <div className="bg-gray-50">
-            <section className="py-16 md:py-24">
-                <div className="container mx-auto">
+        <div className="container mx-auto">
+            <section className="py-8 md:py-24">
+                <div>
                     <motion.div className="text-center space-y-6 max-w-3xl mx-auto" {...fadeInUp}>
                         <h2 className="text-4xl md:text-5xl font-bold tracking-tight bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
                             Explore Our Services
@@ -67,7 +67,7 @@ export default function Component() {
                 </div>
             </section>
 
-            <section className="py-16 md:py-24">
+            <section className="py-8 md:py-24">
                 <div className="container mx-auto">
                     <div className="space-y-24">
                         {/* First Service */}
