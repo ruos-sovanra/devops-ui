@@ -1,155 +1,91 @@
-'use client'
-import deploy from '@/public/cloud2.json'
-import dynamic from "next/dynamic"
-import { motion } from 'framer-motion'
-import cd from '@/public/cd.json'
-import infra from '@/public/infrastructure.json'
-import cloud from '@/public/cloud1.json'
+'use client';
 
-const Lottie = dynamic(() => import('react-lottie'), { ssr: false })
+import IconCloudDemo from "@/component/IconCloudDemo";
+import TerminalPage from "@/app/terminal/page";
+import DevOpsFlow from "@/app/workflow/page";
+import web from "@/public/web-server.json";
+import code from "@/public/code.json";
+import dynamic from "next/dynamic";
+import StorageSection from "@/component/service-page/StorageSection";
 
-const deployAnimation = {
+const Lottie = dynamic(() => import('react-lottie'), { ssr: false });
+
+const webAnimation = {
     loop: true,
     autoplay: true,
-    animationData: deploy,
+    animationData: web,
     rendererSettings: {
         preserveAspectRatio: 'xMidYMid slice',
     },
-    style: { width: '100%', height: '100%' }
 }
 
-const cloudAnimation = {
+const codeAnimation = {
     loop: true,
     autoplay: true,
-    animationData: cloud,
+    animationData: code,
     rendererSettings: {
         preserveAspectRatio: 'xMidYMid slice',
     },
-    style: { width: '100%', height: '100%' }
-}
-
-const infraAnimation = {
-    loop: true,
-    autoplay: true,
-    animationData: infra,
-    rendererSettings: {
-        preserveAspectRatio: 'xMidYMid slice',
-    },
-    style: { width: '100%', height: '100%' }
-}
-
-const cdAnimation = {
-    loop: true,
-    autoplay: true,
-    animationData: cd,
-    rendererSettings: {
-        preserveAspectRatio: 'xMidYMid slice',
-    },
-    style: { width: '100%', height: '100%' }
-}
-
-const fadeInUp = {
-    initial: { opacity: 0, y: 20 },
-    animate: { opacity: 1, y: 0 },
-    transition: { duration: 0.5 }
 }
 
 export default function Component() {
     return (
-        <div className="bg-gray-50">
-            <section className="py-16 md:py-24">
-                <div className="container mx-auto">
-                    <motion.div className="text-center space-y-6 max-w-3xl mx-auto" {...fadeInUp}>
-                        <h2 className="text-4xl md:text-5xl font-bold tracking-tight bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                            Explore Our Services
-                        </h2>
-                    </motion.div>
+        <div className="bg-white">
+            <section className="relative overflow-hidden">
+                <div className="container mx-auto px-4 py-16 md:py-24 lg:py-32 relative">
+                    <div className="flex flex-col items-center text-center relative z-10">
+                        <div className="absolute left-0 top-1/2 -translate-y-1/2 hidden lg:block w-1/4 max-w-xs">
+                            <Lottie options={webAnimation}/>
+                        </div>
+                        <div className="absolute right-0 top-1/2 -translate-y-1/2 hidden lg:block w-1/4 max-w-xs">
+                            <Lottie options={codeAnimation}/>
+                        </div>
+
+                        <div className="w-full max-w-4xl mx-auto">
+                            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6 md:mb-8">
+                                <span className="text-purple-400">Learn How </span>
+                                <span className="text-blue-500">Cloudinator</span>
+                                <br className="hidden sm:inline"/>
+                                <span className="text-purple-400">Can Build Your Product </span>
+                                <span className="text-blue-500">Fast</span>
+                            </h1>
+
+                            <p className="text-gray-600 text-base sm:text-lg md:text-xl max-w-3xl mx-auto mb-8 md:mb-12 leading-relaxed">
+                                Unlock the incredible power of Cloudinator, revolutionizing product
+                                development speed. Accelerate your process, embrace rapid innovation,
+                                and experience a swift and efficient journey. Discover Cloudinator's
+                                potential today.
+                            </p>
+
+                            <button className="bg-black text-white px-6 py-3 sm:px-8 sm:py-4 rounded-full text-base sm:text-lg font-medium hover:bg-gray-800 transition-colors">
+                                Get Started Now
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </section>
 
             <section className="py-16 md:py-24">
-                <div className="container mx-auto">
-                    <div className="space-y-24">
-                        {/* First Service */}
-                        <motion.div className="grid md:grid-cols-2 gap-12 items-center" {...fadeInUp}>
-                            <div className="relative order-2 md:order-1">
-                                <Lottie options={deployAnimation} width={500} height={500}/>
-                            </div>
-                            <div className="space-y-6 order-1 md:order-2">
-                                <h2 className="text-4xl font-bold tracking-tight bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                                    Full Service Deployment
-                                </h2>
-                                <p className="text-gray-600 text-lg leading-relaxed">
-                                    Say goodbye to manual and error-prone deployment processes. Our Service
-                                    automates the deployment of frontend code, backend service, database, and all
-                                    other components of your application stack.
-                                </p>
-                                <button className="bg-yellow-400 hover:bg-yellow-500 text-black px-6 py-3 rounded-lg font-medium transition-colors">
-                                    See More
-                                </button>
-                            </div>
-                        </motion.div>
+                <div className="container mx-auto px-4 flex justify-center">
+                    <IconCloudDemo/>
+                </div>
+            </section>
 
-                        {/* Second Service */}
-                        <motion.div className="grid md:grid-cols-2 gap-12 items-center" {...fadeInUp}>
-                            <div className="space-y-6">
-                                <h2 className="text-4xl font-bold tracking-tight bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
-                                    Continuous Integration
-                                </h2>
-                                <p className="text-gray-600 text-lg leading-relaxed">
-                                    Streamline your development workflow with our robust CI/CD pipeline.
-                                    Automatically build, test, and deploy your code changes with confidence,
-                                    ensuring high-quality releases every time.
-                                </p>
-                                <button className="bg-yellow-400 hover:bg-yellow-500 text-black px-6 py-3 rounded-lg font-medium transition-colors">
-                                    See More
-                                </button>
-                            </div>
-                            <div className="relative order-2 md:order-1">
-                                <Lottie options={cdAnimation} width={400} height={400}/>
-                            </div>
-                        </motion.div>
+            <section className="py-16 md:py-24 bg-gray-50">
+                <div className="container mx-auto px-4">
+                    <TerminalPage/>
+                </div>
+            </section>
 
-                        {/* Third Service */}
-                        <motion.div className="grid md:grid-cols-2 gap-12 items-center" {...fadeInUp}>
-                            <div className="relative order-2 md:order-1">
-                                <Lottie options={infraAnimation} width={400} height={400}/>
-                            </div>
-                            <div className="space-y-6 order-1 md:order-2">
-                                <h2 className="text-4xl font-bold tracking-tight bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent">
-                                    Scalable Infrastructure
-                                </h2>
-                                <p className="text-gray-600 text-lg leading-relaxed">
-                                    Build and manage your applications on our cutting-edge cloud infrastructure.
-                                    Designed for high performance and seamless scalability, our platform adapts
-                                    to your needs, from startups to enterprise-level operations.
-                                </p>
-                                <button className="bg-yellow-400 hover:bg-yellow-500 text-black px-6 py-3 rounded-lg font-medium transition-colors">
-                                    See More
-                                </button>
-                            </div>
-                        </motion.div>
+            <section className="py-16 md:py-24">
+                <div className="container mx-auto px-4">
+                    <DevOpsFlow/>
+                </div>
+            </section>
 
-                        {/* Fourth Service */}
-                        <motion.div className="grid md:grid-cols-2 gap-12 items-center" {...fadeInUp}>
-                            <div className="space-y-6">
-                                <h2 className="text-4xl font-bold tracking-tight bg-gradient-to-r from-red-600 to-yellow-600 bg-clip-text text-transparent">
-                                    24/7 Monitoring & Support
-                                </h2>
-                                <p className="text-gray-600 text-lg leading-relaxed">
-                                    Rest easy knowing your applications are in good hands. Our round-the-clock
-                                    monitoring and expert support team ensure optimal performance, quick issue
-                                    resolution, and proactive maintenance for your peace of mind.
-                                </p>
-                                <button className="bg-yellow-400 hover:bg-yellow-500 text-black px-6 py-3 rounded-lg font-medium transition-colors">
-                                    See More
-                                </button>
-                            </div>
-                            <div className="relative order-2 md:order-1">
-                                <Lottie options={cloudAnimation} width={500} height={500}/>
-                            </div>
-                        </motion.div>
-                    </div>
+            <section className="py-16 md:py-24 bg-gray-50">
+                <div className="container mx-auto px-4">
+                    <StorageSection/>
                 </div>
             </section>
         </div>

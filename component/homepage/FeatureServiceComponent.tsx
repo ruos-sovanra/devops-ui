@@ -40,7 +40,7 @@ const FeatureCard = ({ feature, index }: { feature: Feature; index: number }) =>
     </motion.div>
 )
 
-export default function DevOpsFeaturePage() {
+export default function DevOpsFeatureSection() {
     return (
         <div className="flex flex-col min-h-screen bg-background">
             <main className="flex-grow container mx-auto px-4 py-16">
@@ -87,7 +87,7 @@ const features = [
         description: "Create, deploy, and manage microservices with ease.",
         icon: Layers,
         benefits: [
-            "Service discovery",
+            "service discovery",
             "Load balancing",
             "Inter-service communication",
         ],

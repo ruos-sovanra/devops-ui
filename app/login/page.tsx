@@ -1,7 +1,8 @@
 'use client';
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
-import IconCloudDemo from "@/app/test/page";
+import IconCloudDemo from "@/component/IconCloudDemo";
+
 
 // Simulated feature flag check
 const getFeatureFlag = async (flagName: string): Promise<boolean> => {
@@ -108,7 +109,7 @@ export default function LoginPage() {
                                 />
                             </div>
                             <div className="flex justify-end">
-                                <Link className="text-sm text-purple-600 hover:underline" href="#">
+                                <Link className="text-sm text-purple-600 hover:underline" href={"/reset"}>
                                     Forgot password?
                                 </Link>
                             </div>
@@ -165,7 +166,7 @@ export default function LoginPage() {
 
                         <p className="text-center text-sm text-gray-500">
                             Don&apos;t have an account?{" "}
-                            <Link className="font-medium text-purple-600 hover:underline" href="#">
+                            <Link className="font-medium text-purple-600 hover:underline" href={"/sign-up"}>
                                 Sign Up
                             </Link>
                         </p>

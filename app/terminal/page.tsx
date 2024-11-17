@@ -1,10 +1,10 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs"
 import { ScrollArea } from "@/components/ui/scroll-area"
 
-export default function Component() {
+export default function TerminalPage() {
     const [activeTab, setActiveTab] = useState('kubernetes')
     const [displayedContent, setDisplayedContent] = useState<string[]>([])
     const [currentLineIndex, setCurrentLineIndex] = useState(0)
@@ -73,32 +73,49 @@ export default function Component() {
             const timer = setTimeout(() => {
                 setDisplayedContent(prev => [...prev, currentTab.content[currentLineIndex]])
                 setCurrentLineIndex(prev => prev + 1)
-            }, 1000) // Adjust this value to change the speed of the animation
+            }, 100) // Increased speed for better user experience
 
             return () => clearTimeout(timer)
         }
     }, [activeTab, currentLineIndex, tabs])
 
     return (
-        <div className="w-full bg-gray-100 rounded-lg p-4">
-            <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-                <TabsList className="grid w-full grid-cols-3">
-                    {tabs.map((tab) => (
-                        <TabsTrigger key={tab.id} value={tab.id}>{tab.label}</TabsTrigger>
-                    ))}
-                </TabsList>
-                <div className="mt-4 bg-black rounded-lg h-[500px] w-full"> {/* Full width and taller */}
-                    <ScrollArea className="h-full w-full rounded-md p-4">
-            <pre className="text-green-400 font-mono text-sm whitespace-pre-wrap break-all">
-              {displayedContent.map((line, index) => (
-                  <div key={index} className="mb-2">
-                      {line}
-                  </div>
-              ))}
-            </pre>
-                    </ScrollArea>
+        <section className="bg-gray-50 py-16 md:py-24">
+            <div className="container mx-auto px-4">
+                <h2 className="text-3xl md:text-4xl font-bold text-center mb-8 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                    Work with the Tools You Already Love
+                </h2>
+                <div className="w-full bg-white rounded-lg shadow-lg overflow-hidden">
+                    <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
+                        <TabsList className="grid w-full grid-cols-3 bg-gray-100 p-1">
+                            {tabs.map((tab) => (
+                                <TabsTrigger
+                                    key={tab.id}
+                                    value={tab.id}
+                                    className="data-[state=active]:bg-white data-[state=active]:shadow-sm"
+                                >
+                                    {tab.label}
+                                </TabsTrigger>
+                            ))}
+                        </TabsList>
+                        {tabs.map((tab) => (
+                            <TabsContent key={tab.id} value={tab.id} className="mt-0">
+                                <div className="bg-gray-900 rounded-b-lg h-[500px] w-full">
+                                    <ScrollArea className="h-full w-full rounded-b-md p-4">
+                                        <pre className="text-green-400 font-mono text-sm whitespace-pre-wrap break-all">
+                                            {displayedContent.map((line, index) => (
+                                                <div key={index} className="mb-2">
+                                                    {line}
+                                                </div>
+                                            ))}
+                                        </pre>
+                                    </ScrollArea>
+                                </div>
+                            </TabsContent>
+                        ))}
+                    </Tabs>
                 </div>
-            </Tabs>
-        </div>
+            </div>
+        </section>
     )
 }

@@ -5,7 +5,7 @@ import { motion } from 'framer-motion'
 import { Code, Gift, Server, TestTube, Rocket, Cloud } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 
-export default function Component() {
+export default function DevOpsFlow() {
     const [currentStep, setCurrentStep] = useState(0)
     const steps = ['Develop', 'Commit', 'Test', 'Build', 'Deploy', 'Monitor']
     const icons = [Code, Gift, TestTube, Server, Rocket, Cloud]
@@ -36,66 +36,73 @@ export default function Component() {
     }
 
     return (
-        <div className="w-full max-w-4xl place-content-center h-screen mx-auto p-8 relative bg-gray-100 rounded-lg shadow-lg">
-            <h2 className="text-2xl font-bold text-center mb-8 text-purple-700">DevOps Workflow</h2>
+        <section className="bg-gray-50 py-4 md:py-4">
+            <div className="container mx-auto px-4">
+                <h2 className="text-3xl md:text-4xl font-bold text-center mb-8 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                    How It Works
+                </h2>
+                <div className="w-full max-w-4xl mx-auto bg-white rounded-lg  p-8">
+                    <h3 className="text-2xl font-bold text-center mb-8 text-purple-700">DevOps Workflow</h3>
 
-            <svg viewBox="0 0 800 100" className="w-full h-auto" style={{ minHeight: '100px' }}>
-                {/* Main horizontal line */}
-                <motion.path
-                    d="M 50,50 H 750"
-                    stroke="#E9D5FF"
-                    strokeWidth="2"
-                    fill="none"
-                />
+                    <svg viewBox="0 0 800 100" className="w-full h-auto" style={{ minHeight: '100px' }}>
+                        {/* Main horizontal line */}
+                        <motion.path
+                            d="M 50,50 H 750"
+                            stroke="#E9D5FF"
+                            strokeWidth="2"
+                            fill="none"
+                        />
 
-                {/* Animated path segments */}
-                {[0, 1, 2, 3, 4].map((i) => (
-                    <motion.path
-                        key={i}
-                        d={`M ${50 + i * 140},50 H ${190 + i * 140}`}
-                        stroke="#9333EA"
-                        strokeWidth="4"
-                        fill="none"
-                        variants={lineVariants}
-                        initial="hidden"
-                        animate="visible"
-                        custom={i}
-                    />
-                ))}
+                        {/* Animated path segments */}
+                        {[0, 1, 2, 3, 4].map((i) => (
+                            <motion.path
+                                key={i}
+                                d={`M ${50 + i * 140},50 H ${190 + i * 140}`}
+                                stroke="#9333EA"
+                                strokeWidth="4"
+                                fill="none"
+                                variants={lineVariants}
+                                initial="hidden"
+                                animate="visible"
+                                custom={i}
+                            />
+                        ))}
 
-                {/* Nodes */}
-                {steps.map((step, i) => {
-                    const Icon = icons[i]
-                    return (
-                        <motion.g key={i} variants={nodeVariants} initial="hidden" animate="visible" custom={i}>
-                            <circle cx={50 + i * 140} cy="50" r="24" fill="#9333EA" />
-                            <foreignObject x={50 + i * 140 - 12} y="38" width="24" height="24">
-                                <Icon className="w-6 h-6 text-white" />
-                            </foreignObject>
-                            <text x={50 + i * 140} y="90" textAnchor="middle" fill="#4B5563" className="text-sm">
-                                {step}
-                            </text>
-                        </motion.g>
-                    )
-                })}
-            </svg>
+                        {/* Nodes */}
+                        {steps.map((step, i) => {
+                            const Icon = icons[i]
+                            return (
+                                <motion.g key={i} variants={nodeVariants} initial="hidden" animate="visible" custom={i}>
+                                    <circle cx={50 + i * 140} cy="50" r="24" fill="#9333EA" />
+                                    <foreignObject x={50 + i * 140 - 12} y="38" width="24" height="24">
+                                        <Icon className="w-6 h-6 text-white" />
+                                    </foreignObject>
+                                    <text x={50 + i * 140} y="90" textAnchor="middle" fill="#4B5563" className="text-sm">
+                                        {step}
+                                    </text>
+                                </motion.g>
+                            )
+                        })}
+                    </svg>
 
-            <div className="mt-8 text-center">
-                <Button
-                    className="bg-purple-600 hover:bg-purple-700 text-white"
-                    onClick={() => setCurrentStep((prevStep) => (prevStep + 1) % steps.length)}
-                >
-                    Next Step
-                </Button>
+                    <div className="mt-8 text-center">
+                        <Button
+                            className="bg-purple-600 hover:bg-purple-700 text-white"
+                            onClick={() => setCurrentStep((prevStep) => (prevStep + 1) % steps.length)}
+                        >
+                            Next Step
+                        </Button>
+                    </div>
+
+                    <div className="mt-4 p-4 bg-gray-50 rounded-lg border border-gray-200">
+                        <h4 className="font-semibold text-lg mb-2 text-purple-700">{steps[currentStep]}</h4>
+                        <p className="text-gray-600">
+                            {getStepDescription(currentStep)}
+                        </p>
+                    </div>
+                </div>
             </div>
-
-            <div className="mt-4 p-4 bg-white rounded shadow">
-                <h3 className="font-semibold text-lg mb-2 text-purple-700">{steps[currentStep]}</h3>
-                <p className="text-gray-600">
-                    {getStepDescription(currentStep)}
-                </p>
-            </div>
-        </div>
+        </section>
     )
 }
 

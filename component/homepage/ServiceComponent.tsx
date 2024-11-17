@@ -57,7 +57,7 @@ const fadeInUp = {
 export default function ServiceComponent() {
     return (
         <div className="container mx-auto">
-            <section className="py-8 md:py-24">
+            <section className="py-4 md:py-24">
                 <div>
                     <motion.div className="text-center space-y-6 max-w-3xl mx-auto" {...fadeInUp}>
                         <h2 className="text-4xl md:text-5xl font-bold tracking-tight bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
@@ -67,10 +67,10 @@ export default function ServiceComponent() {
                 </div>
             </section>
 
-            <section className="py-8 md:py-24">
+            <section className="py-4 md:py-24">
                 <div className="container mx-auto">
                     <div className="space-y-24">
-                        {/* First Service */}
+                        {/* First service */}
                         <motion.div className="grid md:grid-cols-2 gap-12 items-center" {...fadeInUp}>
                             <div className="relative order-2 md:order-1">
                                 <Lottie options={deployAnimation} width={500} height={500}/>
@@ -84,13 +84,13 @@ export default function ServiceComponent() {
                                     automates the deployment of frontend code, backend service, database, and all
                                     other components of your application stack.
                                 </p>
-                                <button className="bg-yellow-400 hover:bg-yellow-500 text-black px-6 py-3 rounded-lg font-medium transition-colors">
+                                <button className="bg-purple-500 hover:bg-purple-600 text-white px-6 py-3 rounded-lg font-medium transition-colors">
                                     See More
                                 </button>
                             </div>
                         </motion.div>
 
-                        {/* Second Service */}
+                        {/* Second service */}
                         <motion.div className="grid md:grid-cols-2 gap-12 items-center" {...fadeInUp}>
                             <div className="space-y-6">
                                 <h2 className="text-4xl font-bold tracking-tight bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
@@ -101,7 +101,7 @@ export default function ServiceComponent() {
                                     Automatically build, test, and deploy your code changes with confidence,
                                     ensuring high-quality releases every time.
                                 </p>
-                                <button className="bg-yellow-400 hover:bg-yellow-500 text-black px-6 py-3 rounded-lg font-medium transition-colors">
+                                <button className="bg-purple-500 hover:bg-purple-600 text-white px-6 py-3 rounded-lg font-medium transition-colors">
                                     See More
                                 </button>
                             </div>
@@ -110,7 +110,7 @@ export default function ServiceComponent() {
                             </div>
                         </motion.div>
 
-                        {/* Third Service */}
+                        {/* Third service */}
                         <motion.div className="grid md:grid-cols-2 gap-12 items-center" {...fadeInUp}>
                             <div className="relative order-2 md:order-1">
                                 <Lottie options={infraAnimation} width={400} height={400}/>
@@ -124,13 +124,13 @@ export default function ServiceComponent() {
                                     Designed for high performance and seamless scalability, our platform adapts
                                     to your needs, from startups to enterprise-level operations.
                                 </p>
-                                <button className="bg-yellow-400 hover:bg-yellow-500 text-black px-6 py-3 rounded-lg font-medium transition-colors">
+                                <button className="bg-purple-500 hover:bg-purple-600 text-white px-6 py-3 rounded-lg font-medium transition-colors">
                                     See More
                                 </button>
                             </div>
                         </motion.div>
 
-                        {/* Fourth Service */}
+                        {/* Fourth service */}
                         <motion.div className="grid md:grid-cols-2 gap-12 items-center" {...fadeInUp}>
                             <div className="space-y-6">
                                 <h2 className="text-4xl font-bold tracking-tight bg-gradient-to-r from-red-600 to-yellow-600 bg-clip-text text-transparent">
@@ -141,7 +141,7 @@ export default function ServiceComponent() {
                                     monitoring and expert support team ensure optimal performance, quick issue
                                     resolution, and proactive maintenance for your peace of mind.
                                 </p>
-                                <button className="bg-yellow-400 hover:bg-yellow-500 text-black px-6 py-3 rounded-lg font-medium transition-colors">
+                                <button className="bg-purple-500 hover:bg-purple-600 text-white px-6 py-3 rounded-lg font-medium transition-colors">
                                     See More
                                 </button>
                             </div>

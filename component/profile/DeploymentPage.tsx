@@ -5,7 +5,7 @@ const DeploymentPage = () => {
 
     const [deployments, setDeployments] = useState([
         { id: 1, project: 'Main Website', environment: 'Production', status: 'Success', commit: 'a1b2c3d', author: 'John Doe', timestamp: '2023-06-15 14:30' },
-        { id: 2, project: 'API Service', environment: 'Staging', status: 'In Progress', commit: 'e4f5g6h', author: 'Jane Smith', timestamp: '2023-06-15 15:45' },
+        { id: 2, project: 'API service', environment: 'Staging', status: 'In Progress', commit: 'e4f5g6h', author: 'Jane Smith', timestamp: '2023-06-15 15:45' },
         { id: 3, project: 'Mobile App', environment: 'Development', status: 'Failed', commit: 'i7j8k9l', author: 'Bob Johnson', timestamp: '2023-06-15 16:20' },
     ])
 

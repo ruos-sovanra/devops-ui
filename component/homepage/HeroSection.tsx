@@ -29,9 +29,9 @@ const HeroSection = () => {
                                 To <span className="text-blue-600">Manual.</span>
                             </h1>
                             <p className="mb-6 text-gray-600">
-                                At AutomateX we are on a mission to revolutionize the way you work. With AutomateX, you can say goodbye to manual tasks.
+                                At Cloudinator we are on a mission to revolutionize the way you work. With Cloudinator, you can say goodbye to manual tasks.
                             </p>
-                            <button className="w-full md:w-auto bg-yellow-400 text-gray-900 px-6 py-3 rounded-md font-semibold">
+                            <button className="w-full md:w-auto bg-purple-500 text-white px-6 py-3 rounded-md font-semibold">
                                 Start Deploy
                             </button>
                         </div>

@@ -30,10 +30,15 @@ export default function FrameWorkSection() {
 
     return (
         <div className="min-h-screen bg-white text-black p-8">
+            <div className="text-center mb-16">
+                <h2 className="text-4xl md:text-5xl font-extrabold mb-4 bg-gradient-to-r from-purple-600 to-pink-600 text-transparent bg-clip-text inline-block">
+                    Supported frameworks and libraries for your project
+                </h2>
+            </div>
             <div className="max-w-6xl mx-auto">
                 <h1 className="text-4xl font-bold mb-4">
                     Your framework,
-                    <br />
+                    <br/>
                     your way
                     {hoveredFramework && (
                         <span className="text-blue-600 ml-2 transition-opacity duration-300">
@@ -49,8 +54,9 @@ export default function FrameWorkSection() {
                             onMouseEnter={() => setHoveredFramework(framework.name)}
                             onMouseLeave={() => setHoveredFramework(null)}
                         >
-                            <div className="w-12 h-12 text-gray-800 opacity-70 group-hover:opacity-100 transition-opacity duration-300">
-                                <PixelLogo d={framework.path} />
+                            <div
+                                className="w-12 h-12 text-gray-800 opacity-70 group-hover:opacity-100 transition-opacity duration-300">
+                                <PixelLogo d={framework.path}/>
                             </div>
                         </div>
                     ))}

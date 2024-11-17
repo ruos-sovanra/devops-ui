@@ -1,7 +1,8 @@
 'use client';
 import { useState } from 'react'
 import Link from 'next/link'
-import IconCloudDemo from "@/app/test/page";
+import IconCloudDemo from "@/component/IconCloudDemo";
+
 
 // // Simulated analytics event logging
 // const logEvent = (eventName: string, data: any) => {
@@ -175,7 +176,7 @@ export default function SignupPage() {
 
                         <p className="text-center text-sm text-gray-500">
                             Already have an account?{" "}
-                            <Link className="font-medium text-purple-600 hover:underline" href="#">
+                            <Link className="font-medium text-purple-600 hover:underline" href={"/login"}>
                                 Sign In
                             </Link>
                         </p>

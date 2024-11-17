@@ -87,7 +87,7 @@ const features = [
         description: "Create, deploy, and manage microservices with ease.",
         icon: Layers,
         benefits: [
-            "Service discovery",
+            "service discovery",
             "Load balancing",
             "Inter-service communication",
         ],

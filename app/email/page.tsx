@@ -1,18 +1,18 @@
 'use client';
-import { useState, useRef, useEffect } from 'react'
+import {useEffect, useRef, useState} from 'react'
 import Link from 'next/link'
 
-// Simulated analytics event logging
-const logEvent = (eventName: string, data: any) => {
-    console.log('Event logged:', eventName, data)
-    // In a real app, this would send the event to an analytics service
-}
+// // Simulated analytics event logging
+// const logEvent = (eventName: string, data: any) => {
+//     console.log('Event logged:', eventName, data)
+//     // In a real app, this would send the event to an analytics service
+// }
 
-// Simulated error logging
-const logError = (error: Error) => {
-    console.error('Error logged:', error)
-    // In a real app, this would send the error to a logging service
-}
+// // Simulated error logging
+// const logError = (error: Error) => {
+//     console.error('Error logged:', error)
+//     // In a real app, this would send the error to a logging service
+// }
 
 export default function VerifyCodePage() {
     const [code, setCode] = useState(['', '', '', '', '', ''])
@@ -59,15 +59,16 @@ export default function VerifyCodePage() {
             // Simulated API call
             const response = await fetch('/api/verify-code', {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ code: verificationCode }),
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({code: verificationCode}),
             })
             if (!response.ok) throw new Error('Code verification failed')
             setSuccess('Code verified successfully')
-            logEvent('code_verification_success', { code: verificationCode })
+            // logEvent('code_verification_success', { code: verificationCode })
         } catch (err) {
             setError('Code verification failed. Please try again.')
-            logError(err as Error)
+            // logError(err as Error)
+            console.log(err)
         }
     }
 
@@ -80,8 +81,11 @@ export default function VerifyCodePage() {
                         <div className="space-y-2">
                             <div className="flex items-center gap-2 text-xl font-semibold text-purple-600">
                                 <div className="grid h-8 w-8 place-items-center rounded bg-purple-600 text-white">
-                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20"
+                                         fill="currentColor">
+                                        <path fillRule="evenodd"
+                                              d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                              clipRule="evenodd"/>
                                     </svg>
                                 </div>
                                 Tasky
@@ -95,7 +99,9 @@ export default function VerifyCodePage() {
                                 {code.map((digit, index) => (
                                     <input
                                         key={index}
-                                        ref={(el) => (inputRefs.current[index] = el)}
+                                        ref={(el) => {
+                                            inputRefs.current[index] = el;
+                                        }}
                                         className="h-12 w-12 rounded-md border border-input bg-background text-center text-lg font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
                                         type="text"
                                         inputMode="numeric"
@@ -110,27 +116,38 @@ export default function VerifyCodePage() {
                             </div>
                             {error && (
                                 <div className="flex items-center gap-2 text-red-500">
-                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                                        <path fillRule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20"
+                                         fill="currentColor">
+                                        <path fillRule="evenodd"
+                                              d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z"
+                                              clipRule="evenodd"/>
                                     </svg>
                                     <p className="text-sm">{error}</p>
                                 </div>
                             )}
                             {success && (
                                 <div className="flex items-center gap-2 text-green-500">
-                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                                        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20"
+                                         fill="currentColor">
+                                        <path fillRule="evenodd"
+                                              d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                              clipRule="evenodd"/>
                                     </svg>
                                     <p className="text-sm">{success}</p>
                                 </div>
                             )}
-                            <button
-                                type="submit"
-                                className="inline-flex h-11 w-full items-center justify-center rounded-md bg-purple-600 px-8 text-sm font-medium text-white transition-colors hover:bg-purple-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
-                            >
-                                Verify Code
-                            </button>
+                            {/*<button*/}
+                            {/*    type="submit"*/}
+                            {/*    className="inline-flex h-11 w-full items-center justify-center rounded-md bg-purple-600 px-8 text-sm font-medium text-white transition-colors hover:bg-purple-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"*/}
+                            {/*>*/}
+                            {/*    Verify Code*/}
+                            {/*</button>*/}
                         </form>
+                        <button
+                            className="inline-flex h-11 w-full items-center justify-center rounded-md bg-purple-600 px-8 text-sm font-medium text-white transition-colors hover:bg-purple-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
+                        >
+                            <Link href={"/new-password"}>Verify Code</Link>
+                        </button>
 
                         <p className="text-center text-sm text-gray-500">
                             Did not receive a code?{" "}
@@ -143,13 +160,15 @@ export default function VerifyCodePage() {
                     {/* Right Column - Illustration */}
                     <div className="hidden rounded-2xl bg-purple-500 p-6 md:block">
                         <div className="relative h-full w-full">
-                            <div className="absolute inset-0 flex flex-col items-center justify-center space-y-4 p-6 text-center text-white">
+                            <div
+                                className="absolute inset-0 flex flex-col items-center justify-center space-y-4 p-6 text-center text-white">
                                 <h2 className="text-2xl font-bold">Almost There!</h2>
-                                <p className="text-lg">Verify your code to secure your account and start using Tasky.</p>
+                                <p className="text-lg">Verify your code to secure your account and start using
+                                    Tasky.</p>
                                 <div className="flex space-x-2">
-                                    <div className="h-2 w-2 rounded-full bg-white/60" />
-                                    <div className="h-2 w-2 rounded-full bg-white" />
-                                    <div className="h-2 w-8 rounded-full bg-white/60" />
+                                    <div className="h-2 w-2 rounded-full bg-white/60"/>
+                                    <div className="h-2 w-2 rounded-full bg-white"/>
+                                    <div className="h-2 w-8 rounded-full bg-white/60"/>
                                 </div>
                             </div>
                         </div>

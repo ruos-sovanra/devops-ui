@@ -2,17 +2,17 @@
 import { useState } from 'react'
 import Link from 'next/link'
 
-// Simulated analytics event logging
-const logEvent = (eventName: string, data: any) => {
-    console.log('Event logged:', eventName, data)
-    // In a real app, this would send the event to an analytics service
-}
-
-// Simulated error logging
-const logError = (error: Error) => {
-    console.error('Error logged:', error)
-    // In a real app, this would send the error to a logging service
-}
+// // Simulated analytics event logging
+// const logEvent = (eventName: string, data: any) => {
+//     console.log('Event logged:', eventName, data)
+//     // In a real app, this would send the event to an analytics service
+// }
+//
+// // Simulated error logging
+// const logError = (error: Error) => {
+//     console.error('Error logged:', error)
+//     // In a real app, this would send the error to a logging service
+// }
 
 export default function NewPasswordPage() {
     const [password, setPassword] = useState('')
@@ -44,10 +44,11 @@ export default function NewPasswordPage() {
             })
             if (!response.ok) throw new Error('Password reset failed')
             setSuccess('Your password has been successfully reset')
-            logEvent('password_reset_success', {})
+            // logEvent('password_reset_success', {})
         } catch (err) {
             setError('Password reset failed. Please try again.')
-            logError(err as Error)
+            // logError(err as Error)
+            console.log(err)
         }
     }
 
@@ -128,13 +129,19 @@ export default function NewPasswordPage() {
                                     <p className="text-sm">{success}</p>
                                 </div>
                             )}
-                            <button
-                                type="submit"
-                                className="inline-flex h-11 w-full items-center justify-center rounded-md bg-purple-600 px-8 text-sm font-medium text-white transition-colors hover:bg-purple-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
-                            >
-                                Reset Password
-                            </button>
+                            {/*<button*/}
+                            {/*    type="submit"*/}
+                            {/*    className="inline-flex h-11 w-full items-center justify-center rounded-md bg-purple-600 px-8 text-sm font-medium text-white transition-colors hover:bg-purple-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"*/}
+                            {/*>*/}
+                            {/*    Reset Password*/}
+                            {/*</button>*/}
                         </form>
+
+                        <button
+                            className="inline-flex h-11 w-full items-center justify-center rounded-md bg-purple-600 px-8 text-sm font-medium text-white transition-colors hover:bg-purple-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
+                        >
+                            <Link href={"/login"}>Reset Password</Link>
+                        </button>
 
                         <p className="text-center text-sm text-gray-500">
                             Remember your password?{" "}
