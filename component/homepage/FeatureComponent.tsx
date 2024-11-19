@@ -19,7 +19,7 @@ const features: Feature[] = [
     },
     {
         title: "Personal Dashboard",
-        description: "Customize your workspace with a personal dashboard that provides at-a-glance insights and quick access to your most important tools and metrics.",
+        description: "Customize your workspace with a personal profile that provides at-a-glance insights and quick access to your most important tools and metrics.",
         icon: LayoutDashboardIcon
     },
     {

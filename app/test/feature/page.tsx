@@ -33,7 +33,7 @@ export default function FeatureSection() {
         {
             title: "Personal Dashboard",
             description:
-                "Customize your workspace with a personal dashboard that provides at-a-glance insights and quick access to your most important tools and metrics.",
+                "Customize your workspace with a personal profile that provides at-a-glance insights and quick access to your most important tools and metrics.",
         },
         {
             title: "Scanning Technology",

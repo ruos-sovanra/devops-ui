@@ -2,7 +2,6 @@
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Database, HardDrive, Image as ImageIcon, GitBranch, LineChart, Code, Box, Settings, Cloud } from 'lucide-react'
-import Image from "next/image"
 import { motion } from 'framer-motion'
 import cloud from '@/public/cloud.json'
 import dynamic from "next/dynamic";

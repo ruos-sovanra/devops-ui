@@ -53,7 +53,7 @@ export default function Component() {
                             <p className="text-gray-600 text-base sm:text-lg md:text-xl max-w-3xl mx-auto mb-8 md:mb-12 leading-relaxed">
                                 Unlock the incredible power of Cloudinator, revolutionizing product
                                 development speed. Accelerate your process, embrace rapid innovation,
-                                and experience a swift and efficient journey. Discover Cloudinator's
+                                and experience a swift and efficient journey. Discover Cloudinator s
                                 potential today.
                             </p>
 
