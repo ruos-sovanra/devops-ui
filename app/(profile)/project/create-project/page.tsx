@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState, useCallback } from 'react'
-import { GitlabIcon as GitHubLogoIcon, GitlabIcon as GitLabLogoIcon, ChevronRight, File, Folder, Code, X } from 'lucide-react'
+import { GitlabIcon as GitHubLogoIcon, GitlabIcon as GitLabLogoIcon, ChevronRight, File, Folder, Code, X, Clock, GitCommit } from 'lucide-react'
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -40,6 +40,8 @@ type FileStructure = {
     type: 'file' | 'folder'
     content?: string
     children?: FileStructure[]
+    size?: number
+    lastModified?: string
 }
 
 export default function CreateProject() {
@@ -53,6 +55,9 @@ export default function CreateProject() {
     const [openFiles, setOpenFiles] = useState<string[]>([])
     const [selectedFile, setSelectedFile] = useState<string | null>(null)
     const [fileContents, setFileContents] = useState<Record<string, string>>({})
+    const [commitMessage, setCommitMessage] = useState<string>('')
+    const [commitTime, setCommitTime] = useState<string>('')
+    const [selectedRepo, setSelectedRepo] = useState<string | null>(null)
 
     const handlePreview = async (e: React.FormEvent) => {
         e.preventDefault()
@@ -60,6 +65,7 @@ export default function CreateProject() {
         setError(null)
         setProjectStructure(null)
         setFileContents({})
+        setShowPreview(false)
 
         try {
             const response = await fetch('/api/clone-repo', {
@@ -76,6 +82,8 @@ export default function CreateProject() {
 
             const data = await response.json()
             setProjectStructure(data.structure)
+            setCommitMessage(data.commitMessage)
+            setCommitTime(data.commitTime)
 
             // Store file contents
             const contents: Record<string, string> = {}
@@ -88,7 +96,6 @@ export default function CreateProject() {
             storeContents(data.structure)
             setFileContents(contents)
 
-            setShowPreview(true)
         } catch (err) {
             setError('Failed to fetch project structure. Please check the repository URL and try again.')
             console.error('Error fetching project structure:', err)
@@ -122,6 +129,11 @@ export default function CreateProject() {
         setOpenFiles(prev => prev.filter(name => name !== fileName))
         setSelectedFile(prev => prev === fileName ? null : prev)
     }, [])
+
+    const handleRowClick = (repoName: string) => {
+        setSelectedRepo(repoName)
+        setShowPreview(true)
+    }
 
     const FileTree = useCallback(({ structure, depth = 0 }: { structure: FileStructure, depth?: number }) => {
         const [isOpen, setIsOpen] = useState(false)
@@ -229,7 +241,63 @@ export default function CreateProject() {
                 </Card>
             )}
 
-            {showPreview && projectStructure && (
+            {projectStructure && !showPreview && (
+                <Card className="mt-8">
+                    <CardHeader>
+                        <CardTitle className="flex items-center justify-between">
+                            <span>Repository Files</span>
+                            <div className="flex items-center gap-2 text-sm font-normal text-muted-foreground">
+                                <GitCommit className="h-4 w-4" />
+                                <span>{commitMessage ? '1 Commit' : 'No commits'}</span>
+                            </div>
+                        </CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                        <div className="rounded-md border">
+                            <div className="relative w-full overflow-auto">
+                                <table className="w-full caption-bottom text-sm">
+                                    <thead className="[&_tr]:border-b">
+                                    <tr className="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
+                                        <th className="h-12 px-4 text-left align-middle font-medium">Name</th>
+                                        <th className="h-12 px-4 text-left align-middle font-medium">Message</th>
+                                        <th className="h-12 px-4 text-left align-middle font-medium">Last Modified</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody className="[&_tr:last-child]:border-0">
+                                    {projectStructure.children?.map((item, index) => (
+                                        <tr
+                                            key={index}
+                                            className="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted cursor-pointer"
+                                            onClick={() => handleRowClick(item.name)}
+                                        >
+                                            <td className="p-4 align-middle flex items-center gap-2">
+                                                {item.type === 'file' ? (
+                                                    <File className="h-4 w-4" />
+                                                ) : (
+                                                    <Folder className="h-4 w-4" />
+                                                )}
+                                                {item.name}
+                                            </td>
+                                            <td className="p-4 align-middle text-muted-foreground">
+                                                {commitMessage || 'No commit message'}
+                                            </td>
+                                            <td className="p-4 align-middle text-muted-foreground">
+                                                <div className="flex items-center gap-2">
+                                                    <Clock className="h-4 w-4" />
+                                                    {item.lastModified ? new Date(item.lastModified).toLocaleString() : 'Unknown'}
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    ))}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </CardContent>
+                </Card>
+            )}
+
+            {showPreview && selectedRepo && projectStructure && (
                 <Card className="mt-8">
                     <CardHeader>
                         <CardTitle>Project Preview</CardTitle>
@@ -259,9 +327,9 @@ export default function CreateProject() {
                                                                 className="ml-2 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
                                                                 onClick={(e) => handleCloseFile(fileName, e)}
                                                             >
-                                <X className="h-3 w-3" />
-                                <span className="sr-only">Close</span>
-                              </span>
+                                                                <X className="h-3 w-3" />
+                                                                <span className="sr-only">Close</span>
+                                                            </span>
                                                         </div>
                                                     </TabsTrigger>
                                                 ))}
